@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+
+
+<title>Analysis of Weight Lifting Exercise Dataset Using Random Forest </title>
+
+<style type="text/css">
+  pre:not([class]) {
+    background-color: grey;
+  }
+</style>
+
+</head>
+
+<body>
+
+<style type="text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<div id="abstract" class="section level2">
+<h2>Abstract</h2>
+<p>We use the random forest method to estimate features for the Human Activity Recognition data set from Groupware.</p>
+</div>
+
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>The data is taken from the <a href="http://groupware.les.inf.puc-rio.br/har">Human Activity Recognition</a> programme at <a href="http://groupware.les.inf.puc-rio.br/">Groupware</a>.  We believe that Random Forest Model that we train will predict testing data by an Accuracy of 95%.  We estimate tree size and depth as follows; tree size is a multiple of depth.  According to <a href="http://www.stat.berkeley.edu/~breiman/Using_random_forests_V3.1.pdf"> Manual On Setting Up, Using, And Understanding Random Forests V3.1 1</a>. A large number of trees, 10000,  potentially make for stable variable importances, thus better models.</p>
+</div>
+
+<div id="results" class="section level2">
+<h2>Results</h2>
+<p>Confusion Matricies Compairson of  Training and Testing Sets</p>
+<p>We examine model training and prediction and contrast results using the "Classe Variable cited in the above data set.  A detailed explaination of the R-Code and how it works can be found of the .Rmd file in this repo.  We discuss compare the results from the training and testing sets using confusion matricies and statistics.  The definitions for these terms and statistics can be found in Package Caret, August 15, 2014 Version 6.0-34.  
+
+Accuracy of training compared to testing is 1.0 to 0.9949 indicating training for test prediction are accurate.Sensitivity are 1.0 to 0.9993 meaning that the model  predictions predict "Classe" membership nearly 100% of the time.  Specificity are 1.0 to 0.9986 that the model predictions predict "Non-Classe" membership nearly 100% of the time.  In conclusion, the model is well-trained with the right tree size based on the training and test set provided.</p>
+
+
+<p>Following are the raw Confusion Matricies and Statistics results:</p>
+
+<pre><code>## Confusion Matrix and Statistics Training Set (75% Total Data Set)
+#          Reference
+#Prediction    A    B    C    D    E
+#         A 4185    0    0    0    0
+#         B    0 2848    0    0    0
+#         C    0    0 2567    0    0
+#         D    0    0    0 2412    0
+#         E    0    0    0    0 2706
+#
+#Overall Statistics
+#                                     
+#               Accuracy : 1          
+#                 95% CI : (0.9997, 1)
+#    No Information Rate : 0.2843     
+#    P-Value [Acc > NIR] : < 2.2e-16  
+#                                     
+#                  Kappa : 1          
+# Mcnemar's Test P-Value : NA         
+#
+#Statistics by Class:
+#
+#                     Class: A Class: B Class: C Class: D Class: E
+#Sensitivity            1.0000   1.0000   1.0000   1.0000   1.0000
+#Specificity            1.0000   1.0000   1.0000   1.0000   1.0000
+#Pos Pred Value         1.0000   1.0000   1.0000   1.0000   1.0000
+#Neg Pred Value         1.0000   1.0000   1.0000   1.0000   1.0000
+#Prevalence             0.2843   0.1935   0.1744   0.1639   0.1839
+#Detection Rate         0.2843   0.1935   0.1744   0.1639   0.1839
+#Detection Prevalence   0.2843   0.1935   0.1744   0.1639   0.1839
+#Balanced Accuracy      1.0000   1.0000   1.0000   1.0000   1.0000</code></pre>
+
+
+<pre><code>## Confusion Matrix and Statistics Testing Set (25% Total Data Set)
+# Confusion Matrix and Statistics
+#
+#                    Reference
+#Prediction    A    B    C    D    E
+#         A 1394    1    0    0    0
+#         B    1  946    8    0    0
+#         C    0    2  846    9    0
+#         D    0    0    1  793    1
+#         E    0    0    0    2  900
+#
+#Overall Statistics
+#                                          
+#               Accuracy : 0.9949          
+#                 95% CI : (0.9925, 0.9967)
+#    No Information Rate : 0.2845          
+#    P-Value [Acc > NIR] : < 2.2e-16       
+#                                          
+#                  Kappa : 0.9936          
+# Mcnemar's Test P-Value : NA              
+#
+#Statistics by Class:
+#
+#                     Class: A Class: B Class: C Class: D Class: E
+#Sensitivity            0.9993   0.9968   0.9895   0.9863   0.9989
+#Specificity            0.9997   0.9977   0.9973   0.9995   0.9995
+#Pos Pred Value         0.9993   0.9906   0.9872   0.9975   0.9978
+#Neg Pred Value         0.9997   0.9992   0.9978   0.9973   0.9998
+#Prevalence             0.2845   0.1935   0.1743   0.1639   0.1837
+#Detection Rate         0.2843   0.1929   0.1725   0.1617   0.1835
+#Detection Prevalence   0.2845   0.1947   0.1748   0.1621   0.1839
+#Balanced Accuracy      0.9995   0.9973   0.9934   0.9929   0.9992</code></pre>
+</div>
+</body>
+</html>
